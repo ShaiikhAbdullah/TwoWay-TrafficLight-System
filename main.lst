@@ -1,0 +1,45 @@
+
+
+0000 C285              CLR     LEDg2_pin
+0002 7FE8              MOV     R7,#0E8H
+0004 7E03              MOV     R6,#03H
+
+0006 E4                CLR     A
+0007 FD                MOV     R5,A
+0008 FC                MOV     R4,A
+0009         ?C0004:
+0009 C3                CLR     C
+000A ED                MOV     A,R5
+000B 9F                SUBB    A,R7
+000C EE                MOV     A,R6
+000D 6480              XRL     A,#080H
+000F F8                MOV     R0,A
+0010 EC                MOV     A,R4
+0011 6480              XRL     A,#080H
+0013 98                SUBB    A,R0
+0014 5015              JNC     ?C0010
+                                        
+0016 E4                CLR     A
+0017 FB                MOV     R3,A
+0018 FA                MOV     R2,A
+0019         ?C0007:
+                       
+0019 0B                INC     R3
+001A BB0001            CJNE    R3,#00H,?C0011
+001D 0A                INC     R2
+001E         ?C0011:
+001E EB                MOV     A,R3
+001F 6464              XRL     A,#064H
+0021 4A                ORL     A,R2
+0022 70F5              JNZ     ?C0007
+                                                       
+
+                                        
+0024         ?C0006:
+0024 0D                INC     R5
+0025 BD0001            CJNE    R5,#00H,?C0012
+0028 0C                INC     R4
+0029         ?C0012:
+0029 80DE              SJMP    ?C0004
+
+
